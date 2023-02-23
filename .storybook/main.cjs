@@ -14,5 +14,19 @@ module.exports = {
   },
   "features": {
     "storyStoreV7": true
-  }
+  },
+  webpackFinal: async (config) => {
+     config.module.rules.push({
+         test: /\.css$/i,
+         use: [
+           {
+             loader: "postcss-loader",
+             options: { implementation: require.resolve("postcss") },
+         },
+       ],
+       include: path.resolve(__dirname, "../"),
+       });
+       return config;
+   },
+
 }
